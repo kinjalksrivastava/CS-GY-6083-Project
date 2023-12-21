@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Service Location</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        input[type="date"] {
+            width: calc(100% - 16px); /* Adjust width to account for date input default padding */
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Add Service Location</h2>
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" action="/add_service_location">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+        <br>
+        <label for="unitnumber">Unit Number:</label>
+        <input type="text" id="unitnumber" name="unitnumber" required>
+        <br>
+        <label for="moveindate">Move-in Date:</label>
+        <input type="date" id="moveindate" name="moveindate" required>
+        <br>
+        <label for="squarefootage">Square Footage:</label>
+        <input type="number" id="squarefootage" name="squarefootage" required>
+        <br>
+        <label for="bedrooms">Bedrooms:</label>
+        <input type="number" id="bedrooms" name="bedrooms" required>
+        <br>
+        <label for="occupants">Occupants:</label>
+        <input type="number" id="occupants" name="occupants" required>
+        <br>
+        <label for="zipcode">Zip Code:</label>
+        <input type="text" id="zipcode" name="zipcode" required>
+        <br>
+        <!-- Add other form fields for additional attributes -->
+        <button type="submit">Add Service Location</button>
+    </form>
+    <p><a href="/dashboard">Back to Dashboard</a></p>
+</body>
+</html>

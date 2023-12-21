@@ -1,0 +1,18 @@
+<!-- energy_consumption_graph.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Consumption Graph</title>
+</head>
+<body>
+    <h2>Energy Consumption Graph for Location {{ location_id }}</h2>
+    
+    <!-- Embed the base64-encoded image -->
+    <img src="data:image/png;base64,{{ image_base64 }}" alt="Energy Consumption Graph">
+
+    <p><a href="/dashboard">Back to Dashboard</a></p>
+</body>
+</html>

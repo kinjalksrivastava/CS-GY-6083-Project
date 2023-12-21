@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .welcome {
+    display: flex;
+    justify-content: space-between; /* Aligns items to either end */
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+       .welcome a {
+    color: #fff;
+    text-decoration: none;
+}
+
+       .welcome a:hover {
+    text-decoration: underline;
+}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        th:last-child,
+        td:last-child {
+            border-right: none; /* Remove right border for the last column */
+        }
+    </style>
+</head>
+<body>
+    {% if 'logged_in' in session %}
+    <div class="welcome">
+        Welcome, {{ session['username'] }}!
+      <strong>  <a href="/logout">Logout</a></strong>
+    </div>
+        <h3>Service Locations</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Location ID</th>
+                    <th>Address</th>
+                    <th>Zipcode</th>
+                    <th>Unit Number</th>
+                    <th>Move In Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for location in service_locations %}
+                    <tr>
+                        <td>{{ location[0] }}</td>
+                        <td>{{ location[2] }}</td>
+                        <td>{{ location[3] }}</td>
+                        <td>{{ location[4] }}</td>
+                        <td>{{ location[5] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>Devices</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Device ID</th>
+                    <th>Location ID</th>
+                    <th>Model</th>
+                    <th>Model Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in devices %}
+                    <tr>
+                        <td>{{ device[0] }}</td>
+                        <td>{{ device[1] }}</td>
+                        <td>{{ device[2] }}</td>
+                        <td>{{ device[3] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><a href="/add_service_location">Add Service Location</a></p>
+        <p><a href="/add_device_step1">Add Device</a></p>
+        <p><a href="/energy_consumption_form">Energy Consumption Per Month</a></p>
+        <p><a href="/energy_consumption_form_24_hours">Energy Consumption for 24 hours</a></p>
+        <p><a href="/average_for_a_month">Square Footage Comparison</a></p>
+        <p><a href="/energy_cost_graph_form">Energy Cost and Usage Graph</a></p>
+        <p><a href="/switch_on">Switch on</a></p>
+        <p><a href="/switch_off">Switch off</a></p>
+    {% else %}
+        <p>Please <a href="/login">login</a> to access the dashboard.</p>
+    {% endif %}
+</body>
+</html>
